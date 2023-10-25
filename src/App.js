@@ -1,11 +1,20 @@
-// import logo from './logo.svg';
 import "./App.css";
 import React from "react";
 
 class App extends React.Component {
-    cekPrima = () => {
+  cekPrima = () => {
     const dataTambahan = document.getElementById("input1").value;
     const faktorPrima = [];
+
+    if (dataTambahan <= 0) {
+      document.getElementById("container").style.display = "none"; // Sembunyikan output jika input kurang dari atau sama dengan 0
+      return;
+    }
+
+    if (!dataTambahan) {
+      document.getElementById("container").style.display = "none"; // Sembunyikan output jika input kosong
+      return;
+    }
 
     for (let i = 1; i <= dataTambahan; i++) {
       if (dataTambahan % i === 0) {
@@ -13,6 +22,7 @@ class App extends React.Component {
       }
     }
 
+    document.getElementById("container").style.display = "block"; // Tampilkan output
     if (faktorPrima.length === 2) {
       document.getElementById("container").innerHTML =
         dataTambahan +
@@ -34,7 +44,7 @@ class App extends React.Component {
             <div className="row">
               {/* Judul App */}
               <div className="col-12 text-center">
-                <h1 className="fw-bold">PRIMAKANYA</h1>
+                <h1 className="fw-bold">WOWPRIMA!</h1>
                 <hr className="w-75 mx-auto" />
                 <form
                   id="form1"
@@ -42,7 +52,7 @@ class App extends React.Component {
                   onSubmit={(e) => e.preventDefault()} // Menghentikan perilaku asal dari form
                 >
                   <input
-                    type="text"
+                    type="number" // Menggunakan type "number" untuk membatasi input hanya angka
                     id="input1"
                     name="input1"
                     placeholder="Masukkan angka"
