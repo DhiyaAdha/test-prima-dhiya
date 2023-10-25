@@ -1,11 +1,30 @@
 // import logo from './logo.svg';
-import './App.css';
-import React from 'react';
+import "./App.css";
+import React from "react";
 
 class App extends React.Component {
-  // constructor() {
-  //   super();
-  // }
+    cekPrima = () => {
+    const dataTambahan = document.getElementById("input1").value;
+    const faktorPrima = [];
+
+    for (let i = 1; i <= dataTambahan; i++) {
+      if (dataTambahan % i === 0) {
+        faktorPrima.push(i);
+      }
+    }
+
+    if (faktorPrima.length === 2) {
+      document.getElementById("container").innerHTML =
+        dataTambahan +
+        " adalah bilangan prima. Faktor prima: " +
+        faktorPrima.join(", ");
+    } else {
+      document.getElementById("container").innerHTML =
+        dataTambahan +
+        " bukan bilangan prima. Faktor prima: " +
+        faktorPrima.join(", ");
+    }
+  };
 
   render() {
     return (
@@ -15,68 +34,28 @@ class App extends React.Component {
             <div className="row">
               {/* Judul App */}
               <div className="col-12 text-center">
-                <h1 className='fw-bold'>FEEDUITEN APPS</h1>
-                <hr className='w-75 mx-auto' />
-                <h2 className='fw-bold'>Rp. 150.000, -</h2>
-                <span className='title-sm'>Sisa uang kamu tersisa 75% lagi</span>
-              </div>
-            </div>
-
-            {/* Card */}
-            <div className="row mt-4">
-              <div className="col-6">
-                <div className="card-wrapper p-4">
-                  <div className="icon-wrapper mb-1">
-                    <i className="bi bi-wallet2"></i>
-                  </div>
-                  <span className="title-sm ">Pemasukan</span>
-                  <h3 className='fw-bold'>Rp. 200.000, -</h3>
-                  <span className="title-sm text-ungu fw-bold">50</span>
-                  <span className="title-sm ">Transaksi</span>
-                </div>
-              </div>
-
-              <div className="col-6">
-                <div className="card-wrapper p-4">
-                  <div className="icon-wrapper mb-1">
-                    <i className="bi bi-cash-stack"></i>
-                  </div>
-                  <span className="title-sm ">Pemasukan</span>
-                  <h3 className='fw-bold'>Rp. 200.000, -</h3>
-                  <span className="title-sm text-ungu fw-bold">50</span>
-                  <span className="title-sm ">Transaksi</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="row mt-5">
-              <div className="col-12 d-flex justify-content-between align-items-center">
-                <h4>Ringkasa Transaksi</h4>
-                <div className="wrapper-button d-flex">
-                  <button className='button btn-ungu px-3 py-2 me-2'>
-                    Pemasukan <i class="bi bi-plus-circle-fill"></i>
-                  </button>
-                  <button className='button btn-pink px-3 py-2'>
-                    Pengeluaran <i class="bi bi-dash-circle-fill"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <div className="row mt-4">
-              <div className="col-12 d-flex justify-content-between align-items-center">
-                <div className="d-flex align-items-center">
-                  <div className="icon-wrapper">
-                    <i className="bi bi-wallet2"></i>
-                  </div>
-
-                  <div className="transaction ms-3 d-flex flex-column">
-                    <h6 >Menerima Gaji</h6>
-                    <span className="title-sm"> 1 July 2022</span>
-                  </div>
-
-                </div>
-                  <h5 className="text-money-in">Rp.1000.000</h5>
+                <h1 className="fw-bold">PRIMAKANYA</h1>
+                <hr className="w-75 mx-auto" />
+                <form
+                  id="form1"
+                  name="form1"
+                  onSubmit={(e) => e.preventDefault()} // Menghentikan perilaku asal dari form
+                >
+                  <input
+                    type="text"
+                    id="input1"
+                    name="input1"
+                    placeholder="Masukkan angka"
+                    className="mr-4"
+                    style={{ border: "none" }}
+                  />
+                  <input
+                    type="submit"
+                    value="Periksa Angka Prima"
+                    onClick={this.cekPrima} // Memanggil fungsi cekPrima saat tombol diklik
+                  />
+                </form>
+                <p id="container"></p>
               </div>
             </div>
           </div>
@@ -84,7 +63,6 @@ class App extends React.Component {
       </>
     );
   }
-
 }
 
 export default App;
